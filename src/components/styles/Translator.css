@@ -1,0 +1,10 @@
+.Translator {
+  width: 100%;
+  border: solid 1px var(--mainColor);
+}
+
+.Translator--translation {
+  min-height: 10rem;
+  width: 50%;
+  border: solid 1px red;
+}
