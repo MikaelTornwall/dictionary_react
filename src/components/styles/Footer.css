@@ -1,0 +1,14 @@
+.Footer {
+  margin-top: 5rem;
+  background: var(--mainColor);
+  color: var(--secondaryTextColor);
+  height: 10rem;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.Footer__copyright {
+  margin-bottom: 1rem;
+}

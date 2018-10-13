@@ -1,10 +1,32 @@
 .Translator {
+  margin-top: 3rem;
   width: 100%;
-  border: solid 1px var(--mainColor);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.Translator--translation {
+.Translator__textarea {
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+.Translator__button {
+  background: var(--mainColor);
+  color: var(--secondaryTextColor);
+  font-size: 1.2rem;
+  border: none;
+  margin: 1rem;
+  cursor: pointer;
+  padding: .4rem;
+}
+
+.Translator__button:hover {
+    background: #3a1b6ba1
+}
+
+.Translator__translation {
   min-height: 10rem;
-  width: 50%;
-  border: solid 1px red;
+  width: 95%;
+  border: solid 1px var(--mainColor);
+  margin: 1rem;
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Menu from './components/Menu'
 import Translator from './components/Translator'
 import Wordbook from './components/Wordbook'
+import Footer from './components/Footer'
 import './style/App.css'
 
 class App extends Component {
@@ -22,20 +23,36 @@ async componentDidMount() {
       B: "-...",
       C: "-.-.",
       D: "-..",
-      E: "."
+      E: ".",
+      F: "..-.",
+      G: "--.",
+      H: "....",
+      I: "..",
+      J: ".---",
+      K: "-.-",
+      L: ".-..",
+      M: "--",
+      N: "-.",
+      O: "---",
+      P: ".--.",
+      Q: "--.-",
+      R: ".-.",
+      S: "...",
+      T: "-",
+      U: "..-",
+      V: "...-",
+      W: ".--",
+      X: "-..-",
+      Y: "-.--",
+      Z: "--.."
     }
 
     await this.setState({ data: morse })
     console.log(this.state.data)
 }
 
-renderDictionary = () => (event) => {
-  console.log(event.target.id)
-  this.setState({ render: 'dictionary' })
-}
-
-renderTranslator = () => () => {
-  this.setState({ render: 'translator' })
+handleMenu = () => (event) => {
+  this.setState({ render: event.target.id })
 }
 
 handleChange = () => (event) => {
@@ -51,13 +68,15 @@ translate = () => {
   let translation = ''
   arr.map(letter => {
     if (letter === ' ') {
-      translation = translation + '\n'
+      translation = translation + '\xa0 \xa0 \xa0 \xa0' + '\n'
+    } else if (letter === undefined) {
+      translation = translation
     } else {
       translation = translation + this.state.data[letter] + ' '
     }
+    return translation
   })
   this.setState({ translation })
-  return
 }
 
 handleClick = () => async () => {
@@ -88,12 +107,12 @@ const toggleViews = () => this.state.render === 'translator' ? renderTranslator(
     return (
       <div className="App">
         <Menu
-          translator={this.renderTranslator()}
-          dictionary={this.renderDictionary()}
+          handleClick={this.handleMenu()}
         />
         <div className="App--container">
         {toggleViews()}
         </div>
+        <Footer />
       </div>
     )
   }
