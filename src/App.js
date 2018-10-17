@@ -12,7 +12,8 @@ class App extends Component {
       data: [],
       render: 'translator',
       toTranslate: '',
-      translation: ''
+      translation: '',
+      toggle: true
     }
   }
 
@@ -60,7 +61,30 @@ handleChange = () => (event) => {
   this.setState({ toTranslate: event.target.value })
 }
 
-translate = () => {
+toggle = () => () => this.state.toggle ? this.setState({ toggle: false }) : this.setState({ toggle: true })
+
+translateToLetters = () => {
+  const stringToTranslate = this.state.toTranslate
+  const arr = stringToTranslate.split(' ')
+  console.log(arr)
+
+  let translation = '';
+  arr.map(code => {
+    if (code === '') {
+      translation += ' '
+    } else {
+      let letter = ''
+      for (let i in this.state.data) {
+        if (this.state.data[i] === code) letter = i
+      }
+      translation += letter
+    }
+    return translation
+  })
+  this.setState({translation})
+}
+
+translateToMorse = () => {
   const stringToTranslate = this.state.toTranslate
   const arr = stringToTranslate.toUpperCase().split('')
   console.log(arr)
@@ -68,11 +92,9 @@ translate = () => {
   let translation = ''
   arr.map(letter => {
     if (letter === ' ') {
-      translation = translation + '\xa0 \xa0 \xa0 \xa0' + '\n'
-    } else if (letter === undefined) {
-      translation = translation
+      translation += '\xa0 \xa0'
     } else {
-      translation = translation + this.state.data[letter] + ' '
+      translation += this.state.data[letter] + '\xa0'
     }
     return translation
   })
@@ -80,7 +102,11 @@ translate = () => {
 }
 
 handleClick = () => async () => {
-  await this.translate()
+  if (this.state.toggle) {
+    await this.translateToMorse()
+  } else {
+    await this.translateToLetters()
+  }
 }
 
   render() {
@@ -93,6 +119,8 @@ const renderTranslator = () => (
     translation={this.state.translation}
     onChange={this.handleChange()}
     onClick={this.handleClick()}
+    toggle={this.toggle()}
+    toggleValue={this.state.toggle}
     />
 )
 

@@ -1,13 +1,36 @@
 .Translator {
+  padding: 1rem;
   margin-top: 3rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, .3);
 }
 
 .Translator__textarea {
   margin: 1rem 1rem 1rem 1rem;
+}
+
+.Translator__toggle {
+  background: var(--mainColor);
+  color: var(--secondaryTextColor);
+  font-size: .7rem;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.7rem;
+  width: 2.7rem;
+  cursor: pointer;
+}
+
+.Translator__toggle:hover {
+  background: #3a1b6ba1;
+}
+
+.Translator__toggle__item {
+  padding: 1.5rem;
 }
 
 .Translator__button {
@@ -21,7 +44,7 @@
 }
 
 .Translator__button:hover {
-    background: #3a1b6ba1
+    background: #3a1b6ba1;
 }
 
 .Translator__translation {
